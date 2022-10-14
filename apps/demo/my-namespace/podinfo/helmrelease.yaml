@@ -1,0 +1,42 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: podinfo
+spec:
+  chart:
+    spec:
+      chart: podinfo
+      sourceRef:
+        kind: HelmRepository
+        name: podinfo
+        namespace: flux-system
+      version: "6.2.x"
+  interval: 3m
+  values:
+    ui:
+      color: "#cc1d3a"
+    image:
+      repository: 963194201930.dkr.ecr.eu-west-3.amazonaws.com/demo
+      tag: 6.2.0 # {"$imagepolicy": "my-namespace:podinfo:tag"}
+    ingress:
+      enabled: true
+      className: "nginx"
+      hosts:
+      - host: demo.example.com
+        paths:
+        - path: /
+          pathType: Prefix
+      tls:
+      - hosts:
+        - demo.example.com
+        secretName: podinfo-tls
+    certificate:
+      create: true
+      issuerRef:
+        kind: ClusterIssuer
+        name: letsencrypt-cluster-issuer
+      dnsNames:
+      - demo.example.com
+  valuesFrom:
+  - kind: Secret
+    name: podinfo-values

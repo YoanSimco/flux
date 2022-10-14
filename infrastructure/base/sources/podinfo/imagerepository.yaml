@@ -1,0 +1,13 @@
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImageRepository
+metadata:
+  name: podinfo
+spec:
+  image: 963194201930.dkr.ecr.eu-west-3.amazonaws.com/demo
+  interval: 3m
+  secretRef:
+    name: podinfo
+  accessFrom:
+    namespaceSelectors:
+    - matchLabels:
+        kustomize.toolkit.fluxcd.io/name: apps

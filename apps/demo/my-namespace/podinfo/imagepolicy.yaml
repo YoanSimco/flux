@@ -1,0 +1,11 @@
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImagePolicy
+metadata:
+  name: podinfo
+spec:
+  imageRepositoryRef:
+    name: podinfo
+    namespace: flux-system
+  policy:
+    semver:
+      range: ">=1.0.0"
