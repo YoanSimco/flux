@@ -10,5 +10,5 @@ spec:
         kind: HelmRepository
         name: kube-prometheus-stack
         namespace: kube-prometheus-stack
-      version: "41.3.2"
+      version: "41.7.0"
   interval: 6h

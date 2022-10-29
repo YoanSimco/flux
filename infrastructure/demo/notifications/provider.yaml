@@ -1,9 +1,9 @@
 apiVersion: notification.toolkit.fluxcd.io/v1beta1
 kind: Provider
 metadata:
-  name: discord
+  name: discord-provider
 spec:
   type: discord
-  channel: test-cluster
+  channel: demo-cluster
   secretRef:
-    name: discord-url
+    name: discord-provider-secret

@@ -1,11 +1,11 @@
 apiVersion: notification.toolkit.fluxcd.io/v1beta1
 kind: Alert
 metadata:
-  name: cluster-notifications
+  name: cluster-notifications-alert
 spec:
-  summary: "Test cluster"
+  summary: "Demo cluster"
   providerRef:
-    name: discord
+    name: discord-provider
   eventSeverity: info
   eventSources:
   - kind: GitRepository

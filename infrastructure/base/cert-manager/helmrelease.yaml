@@ -10,7 +10,7 @@ spec:
         kind: HelmRepository
         name: cert-manager
         namespace: cert-manager
-      version: "1.x"
+      version: "v1.10.0"
   interval: 6h
   values:
     installCRDs: true

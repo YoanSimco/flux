@@ -1,0 +1,23 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: cluster-autoscaler
+spec:
+  chart:
+    spec:
+      chart: cluster-autoscaler
+      sourceRef:
+        kind: HelmRepository
+        name: cluster-autoscaler
+        namespace: kube-system
+      version: "9.21.0"
+  interval: 6h
+  values:
+    awsRegion: eu-west-3
+    autoDiscovery:
+      clusterName: demo
+    rbac:
+      serviceAccount:
+        name: cluster-autoscaler
+        annotations:
+          eks.amazonaws.com/role-arn: arn:aws:iam::963194201930:role/demo-autoscaler
